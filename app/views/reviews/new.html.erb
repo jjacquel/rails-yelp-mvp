@@ -1,0 +1,15 @@
+<div class="container py-3">
+  <p class="card-text">
+    <h4>Review</h4>
+    <%= simple_form_for [ @restaurant, @review ] do |f| %>
+      <%= f.input :rating, collection: Review::RATING %>
+      <%= f.input :content %>
+      <%= f.submit "Review" %>
+    <% end %>
+  </p>
+</div>
+  <%= simple_form_for [ @restaurant, @review ] do |f| %>
+    <%= f.input :rating, collection: Review::RATING %>
+    <%= f.input :content %>
+    <%= f.submit "Review" %>
+  <% end %>

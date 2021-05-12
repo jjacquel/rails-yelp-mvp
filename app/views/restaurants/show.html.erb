@@ -1,0 +1,37 @@
+
+
+<div class="container py-3">
+  <%= link_to "Add a restaurant", new_restaurant_path, class: "btn btn-primary my-5" %>
+  <h1><%= @restaurant.name %></h1>
+  <p class="card-text">
+    <%= @restaurant.category.capitalize %>
+    <br>
+    <%= @restaurant.address %> | <%= @restaurant.phone_number %>
+  </p>
+  <hr>
+  <p class="card-text">
+    <h4>Reviews</h4>
+    <br>
+    <% @restaurant.reviews.each do |review| %>
+      <p><strong>Rating: </strong>
+        <% (review.rating).times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+        <% (5 - review.rating).times do %>
+          <i class="far fa-star"></i>
+        <% end %>
+      </p>
+      <p><strong>Review: </strong><%= review.content %> </p>
+      <hr>
+    <% end %>
+  </p>
+  <h4>Leave a review</h4>
+  <%= simple_form_for [ @restaurant, @review ] do |f| %>
+    <%= f.input :rating, collection: Review::RATING %>
+    <%= f.input :content %>
+    <%= f.submit "Review" %>
+  <% end %>
+  <hr>
+  <%= link_to "Back", restaurants_path, class: "btn btn-warning" %>
+</div>
+
